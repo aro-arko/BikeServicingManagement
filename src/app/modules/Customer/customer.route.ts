@@ -5,12 +5,13 @@ import { CustomerController } from "./customer.controller";
 
 const router = express.Router();
 
-router.get("/", CustomerController.getAllCustomers);
-
 router.post(
   "/",
   validateRequest(CustomerValidationSchemas.createCustomerSchema),
   CustomerController.createCustomer,
 );
+
+router.get("/", CustomerController.getAllCustomers);
+router.get("/:id", CustomerController.getCustomerById);
 
 export const customerRoutes = router;

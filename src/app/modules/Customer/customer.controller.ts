@@ -28,7 +28,22 @@ const getAllCustomers = catchAsync(async (req, res) => {
   });
 });
 
+// get customer by id
+const getCustomerById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const result = await CustomerService.getCustomerById(id as string);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Customer fetched successfully",
+    data: result,
+  });
+});
+
 export const CustomerController = {
   getAllCustomers,
   createCustomer,
+  getCustomerById,
 };
