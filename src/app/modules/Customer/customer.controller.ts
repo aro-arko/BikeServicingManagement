@@ -9,13 +9,26 @@ const createCustomer = catchAsync(async (req, res) => {
   const result = await CustomerService.createCustomer(customerData);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: httpStatus.CREATED,
     success: true,
     message: "Customer created successfully",
     data: result,
   });
 });
 
+// get all customers
+const getAllCustomers = catchAsync(async (req, res) => {
+  const result = await CustomerService.getAllCustomers();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Customers retrieved successfully",
+    data: result,
+  });
+});
+
 export const CustomerController = {
+  getAllCustomers,
   createCustomer,
 };
