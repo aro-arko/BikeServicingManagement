@@ -14,7 +14,11 @@ router.post(
 router.get("/", CustomerController.getAllCustomers);
 router.get("/:id", CustomerController.getCustomerById);
 
-router.put("/:id", CustomerController.updateCustomer);
+router.put(
+  "/:id",
+  validateRequest(CustomerValidationSchemas.updateCustomerSchema),
+  CustomerController.updateCustomer,
+);
 
 router.delete("/:id", CustomerController.deleteCustomer);
 
