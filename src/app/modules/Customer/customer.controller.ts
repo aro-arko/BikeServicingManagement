@@ -1,9 +1,13 @@
 import catchAsync from "../../../shared/catchAsync";
+import sendResponse from "../../../shared/sendResponse";
+import httpStatus from "http-status";
 
 const createCustomer = catchAsync(async (req, res) => {
-  res.status(200).json({
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
     success: true,
-    message: "Customer created successfully!",
+    message: "Customer created successfully",
+    data: null,
   });
 });
 
