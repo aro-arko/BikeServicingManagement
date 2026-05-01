@@ -18,6 +18,7 @@ const sendResponse = <T>(
     success: jsonData.success,
     message: jsonData.message,
     meta: jsonData.meta || null || undefined,
+    data: jsonData.data || null || undefined,
   });
 };
 
