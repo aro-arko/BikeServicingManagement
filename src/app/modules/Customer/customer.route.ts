@@ -14,4 +14,6 @@ router.post(
 router.get("/", CustomerController.getAllCustomers);
 router.get("/:id", CustomerController.getCustomerById);
 
+router.put("/:id", CustomerController.updateCustomer);
+
 export const customerRoutes = router;

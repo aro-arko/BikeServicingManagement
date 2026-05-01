@@ -26,8 +26,20 @@ const getCustomerById = async (id: string) => {
   return data;
 };
 
+const updateCustomer = async (id: string, payLoad: Partial<ICustomer>) => {
+  const data = await prisma.customer.update({
+    where: {
+      customerId: id,
+    },
+    data: payLoad,
+  });
+
+  return data;
+};
+
 export const CustomerService = {
   createCustomer,
   getAllCustomers,
   getCustomerById,
+  updateCustomer,
 };
