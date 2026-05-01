@@ -37,9 +37,20 @@ const updateCustomer = async (id: string, payLoad: Partial<ICustomer>) => {
   return data;
 };
 
+const deleteCustomer = async (id: string) => {
+  await prisma.customer.delete({
+    where: {
+      customerId: id,
+    },
+  });
+
+  return;
+};
+
 export const CustomerService = {
   createCustomer,
   getAllCustomers,
   getCustomerById,
   updateCustomer,
+  deleteCustomer,
 };
