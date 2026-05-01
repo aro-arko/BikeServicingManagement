@@ -5,7 +5,6 @@ import { CustomerService } from "./customer.service";
 
 const createCustomer = catchAsync(async (req, res) => {
   const customerData = req.body;
-  console.log(customerData);
 
   const result = await CustomerService.createCustomer(customerData);
 

@@ -10,7 +10,6 @@ const createCustomer = async (payload: ICustomer) => {
       phone,
     },
   });
-  console.log(data);
 
   return data;
 };
