@@ -48,7 +48,21 @@ const getAllBikesFromDb = async () => {
   return bikes;
 };
 
+const getBikeByIdFromDb = async (id: string) => {
+  const bike = await prisma.bike.findUnique({
+    where: {
+      bikeId: id,
+    },
+  });
+
+  if (!bike) {
+    throw new Error("Bike not found");
+  }
+  return bike;
+};
+
 export const BikeService = {
   createBikeIntoDb,
   getAllBikesFromDb,
+  getBikeByIdFromDb,
 };
