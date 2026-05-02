@@ -17,12 +17,13 @@ model Customer {
 }
 
 model Bike {
-  bikeId     String   @id @default(uuid())
-  brand      String
-  model      String
-  year       Int
-  customerId String
-  customer   Customer @relation(fields: [customerId], references: [customerId])
+  bikeId         String          @id @default(uuid())
+  brand          String
+  model          String
+  year           Int
+  customerId     String
+  customer       Customer        @relation(fields: [customerId], references: [customerId])
+  serviceRecords ServiceRecord[]
 }
 
 model ServiceRecord {
@@ -32,6 +33,8 @@ model ServiceRecord {
   completionDate DateTime?
   description    String
   status         ServiceStatus
+
+  bike Bike @relation(fields: [bikeId], references: [bikeId])
 }
 
 enum ServiceStatus {

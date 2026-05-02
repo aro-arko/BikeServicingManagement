@@ -190,6 +190,7 @@ export type ServiceRecordWhereInput = {
   completionDate?: Prisma.DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
   description?: Prisma.StringFilter<"ServiceRecord"> | string
   status?: Prisma.EnumServiceStatusFilter<"ServiceRecord"> | $Enums.ServiceStatus
+  bike?: Prisma.XOR<Prisma.BikeScalarRelationFilter, Prisma.BikeWhereInput>
 }
 
 export type ServiceRecordOrderByWithRelationInput = {
@@ -199,6 +200,7 @@ export type ServiceRecordOrderByWithRelationInput = {
   completionDate?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  bike?: Prisma.BikeOrderByWithRelationInput
 }
 
 export type ServiceRecordWhereUniqueInput = Prisma.AtLeast<{
@@ -211,6 +213,7 @@ export type ServiceRecordWhereUniqueInput = Prisma.AtLeast<{
   completionDate?: Prisma.DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
   description?: Prisma.StringFilter<"ServiceRecord"> | string
   status?: Prisma.EnumServiceStatusFilter<"ServiceRecord"> | $Enums.ServiceStatus
+  bike?: Prisma.XOR<Prisma.BikeScalarRelationFilter, Prisma.BikeWhereInput>
 }, "serviceId">
 
 export type ServiceRecordOrderByWithAggregationInput = {
@@ -239,11 +242,11 @@ export type ServiceRecordScalarWhereWithAggregatesInput = {
 
 export type ServiceRecordCreateInput = {
   serviceId?: string
-  bikeId: string
   serviceDate: Date | string
   completionDate?: Date | string | null
   description: string
   status: $Enums.ServiceStatus
+  bike: Prisma.BikeCreateNestedOneWithoutServiceRecordsInput
 }
 
 export type ServiceRecordUncheckedCreateInput = {
@@ -257,11 +260,11 @@ export type ServiceRecordUncheckedCreateInput = {
 
 export type ServiceRecordUpdateInput = {
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
-  bikeId?: Prisma.StringFieldUpdateOperationsInput | string
   serviceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+  bike?: Prisma.BikeUpdateOneRequiredWithoutServiceRecordsNestedInput
 }
 
 export type ServiceRecordUncheckedUpdateInput = {
@@ -284,7 +287,6 @@ export type ServiceRecordCreateManyInput = {
 
 export type ServiceRecordUpdateManyMutationInput = {
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
-  bikeId?: Prisma.StringFieldUpdateOperationsInput | string
   serviceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -298,6 +300,16 @@ export type ServiceRecordUncheckedUpdateManyInput = {
   completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+}
+
+export type ServiceRecordListRelationFilter = {
+  every?: Prisma.ServiceRecordWhereInput
+  some?: Prisma.ServiceRecordWhereInput
+  none?: Prisma.ServiceRecordWhereInput
+}
+
+export type ServiceRecordOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ServiceRecordCountOrderByAggregateInput = {
@@ -327,12 +339,140 @@ export type ServiceRecordMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
 }
 
+export type ServiceRecordCreateNestedManyWithoutBikeInput = {
+  create?: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput> | Prisma.ServiceRecordCreateWithoutBikeInput[] | Prisma.ServiceRecordUncheckedCreateWithoutBikeInput[]
+  connectOrCreate?: Prisma.ServiceRecordCreateOrConnectWithoutBikeInput | Prisma.ServiceRecordCreateOrConnectWithoutBikeInput[]
+  createMany?: Prisma.ServiceRecordCreateManyBikeInputEnvelope
+  connect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+}
+
+export type ServiceRecordUncheckedCreateNestedManyWithoutBikeInput = {
+  create?: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput> | Prisma.ServiceRecordCreateWithoutBikeInput[] | Prisma.ServiceRecordUncheckedCreateWithoutBikeInput[]
+  connectOrCreate?: Prisma.ServiceRecordCreateOrConnectWithoutBikeInput | Prisma.ServiceRecordCreateOrConnectWithoutBikeInput[]
+  createMany?: Prisma.ServiceRecordCreateManyBikeInputEnvelope
+  connect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+}
+
+export type ServiceRecordUpdateManyWithoutBikeNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput> | Prisma.ServiceRecordCreateWithoutBikeInput[] | Prisma.ServiceRecordUncheckedCreateWithoutBikeInput[]
+  connectOrCreate?: Prisma.ServiceRecordCreateOrConnectWithoutBikeInput | Prisma.ServiceRecordCreateOrConnectWithoutBikeInput[]
+  upsert?: Prisma.ServiceRecordUpsertWithWhereUniqueWithoutBikeInput | Prisma.ServiceRecordUpsertWithWhereUniqueWithoutBikeInput[]
+  createMany?: Prisma.ServiceRecordCreateManyBikeInputEnvelope
+  set?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  disconnect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  delete?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  connect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  update?: Prisma.ServiceRecordUpdateWithWhereUniqueWithoutBikeInput | Prisma.ServiceRecordUpdateWithWhereUniqueWithoutBikeInput[]
+  updateMany?: Prisma.ServiceRecordUpdateManyWithWhereWithoutBikeInput | Prisma.ServiceRecordUpdateManyWithWhereWithoutBikeInput[]
+  deleteMany?: Prisma.ServiceRecordScalarWhereInput | Prisma.ServiceRecordScalarWhereInput[]
+}
+
+export type ServiceRecordUncheckedUpdateManyWithoutBikeNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput> | Prisma.ServiceRecordCreateWithoutBikeInput[] | Prisma.ServiceRecordUncheckedCreateWithoutBikeInput[]
+  connectOrCreate?: Prisma.ServiceRecordCreateOrConnectWithoutBikeInput | Prisma.ServiceRecordCreateOrConnectWithoutBikeInput[]
+  upsert?: Prisma.ServiceRecordUpsertWithWhereUniqueWithoutBikeInput | Prisma.ServiceRecordUpsertWithWhereUniqueWithoutBikeInput[]
+  createMany?: Prisma.ServiceRecordCreateManyBikeInputEnvelope
+  set?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  disconnect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  delete?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  connect?: Prisma.ServiceRecordWhereUniqueInput | Prisma.ServiceRecordWhereUniqueInput[]
+  update?: Prisma.ServiceRecordUpdateWithWhereUniqueWithoutBikeInput | Prisma.ServiceRecordUpdateWithWhereUniqueWithoutBikeInput[]
+  updateMany?: Prisma.ServiceRecordUpdateManyWithWhereWithoutBikeInput | Prisma.ServiceRecordUpdateManyWithWhereWithoutBikeInput[]
+  deleteMany?: Prisma.ServiceRecordScalarWhereInput | Prisma.ServiceRecordScalarWhereInput[]
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
 export type EnumServiceStatusFieldUpdateOperationsInput = {
   set?: $Enums.ServiceStatus
+}
+
+export type ServiceRecordCreateWithoutBikeInput = {
+  serviceId?: string
+  serviceDate: Date | string
+  completionDate?: Date | string | null
+  description: string
+  status: $Enums.ServiceStatus
+}
+
+export type ServiceRecordUncheckedCreateWithoutBikeInput = {
+  serviceId?: string
+  serviceDate: Date | string
+  completionDate?: Date | string | null
+  description: string
+  status: $Enums.ServiceStatus
+}
+
+export type ServiceRecordCreateOrConnectWithoutBikeInput = {
+  where: Prisma.ServiceRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput>
+}
+
+export type ServiceRecordCreateManyBikeInputEnvelope = {
+  data: Prisma.ServiceRecordCreateManyBikeInput | Prisma.ServiceRecordCreateManyBikeInput[]
+  skipDuplicates?: boolean
+}
+
+export type ServiceRecordUpsertWithWhereUniqueWithoutBikeInput = {
+  where: Prisma.ServiceRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.ServiceRecordUpdateWithoutBikeInput, Prisma.ServiceRecordUncheckedUpdateWithoutBikeInput>
+  create: Prisma.XOR<Prisma.ServiceRecordCreateWithoutBikeInput, Prisma.ServiceRecordUncheckedCreateWithoutBikeInput>
+}
+
+export type ServiceRecordUpdateWithWhereUniqueWithoutBikeInput = {
+  where: Prisma.ServiceRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.ServiceRecordUpdateWithoutBikeInput, Prisma.ServiceRecordUncheckedUpdateWithoutBikeInput>
+}
+
+export type ServiceRecordUpdateManyWithWhereWithoutBikeInput = {
+  where: Prisma.ServiceRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.ServiceRecordUpdateManyMutationInput, Prisma.ServiceRecordUncheckedUpdateManyWithoutBikeInput>
+}
+
+export type ServiceRecordScalarWhereInput = {
+  AND?: Prisma.ServiceRecordScalarWhereInput | Prisma.ServiceRecordScalarWhereInput[]
+  OR?: Prisma.ServiceRecordScalarWhereInput[]
+  NOT?: Prisma.ServiceRecordScalarWhereInput | Prisma.ServiceRecordScalarWhereInput[]
+  serviceId?: Prisma.StringFilter<"ServiceRecord"> | string
+  bikeId?: Prisma.StringFilter<"ServiceRecord"> | string
+  serviceDate?: Prisma.DateTimeFilter<"ServiceRecord"> | Date | string
+  completionDate?: Prisma.DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
+  description?: Prisma.StringFilter<"ServiceRecord"> | string
+  status?: Prisma.EnumServiceStatusFilter<"ServiceRecord"> | $Enums.ServiceStatus
+}
+
+export type ServiceRecordCreateManyBikeInput = {
+  serviceId?: string
+  serviceDate: Date | string
+  completionDate?: Date | string | null
+  description: string
+  status: $Enums.ServiceStatus
+}
+
+export type ServiceRecordUpdateWithoutBikeInput = {
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+}
+
+export type ServiceRecordUncheckedUpdateWithoutBikeInput = {
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+}
+
+export type ServiceRecordUncheckedUpdateManyWithoutBikeInput = {
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
 }
 
 
@@ -344,6 +484,7 @@ export type ServiceRecordSelect<ExtArgs extends runtime.Types.Extensions.Interna
   completionDate?: boolean
   description?: boolean
   status?: boolean
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["serviceRecord"]>
 
 export type ServiceRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -353,6 +494,7 @@ export type ServiceRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   completionDate?: boolean
   description?: boolean
   status?: boolean
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["serviceRecord"]>
 
 export type ServiceRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -362,6 +504,7 @@ export type ServiceRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   completionDate?: boolean
   description?: boolean
   status?: boolean
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["serviceRecord"]>
 
 export type ServiceRecordSelectScalar = {
@@ -374,10 +517,21 @@ export type ServiceRecordSelectScalar = {
 }
 
 export type ServiceRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"serviceId" | "bikeId" | "serviceDate" | "completionDate" | "description" | "status", ExtArgs["result"]["serviceRecord"]>
+export type ServiceRecordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
+}
+export type ServiceRecordIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
+}
+export type ServiceRecordIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bike?: boolean | Prisma.BikeDefaultArgs<ExtArgs>
+}
 
 export type $ServiceRecordPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ServiceRecord"
-  objects: {}
+  objects: {
+    bike: Prisma.$BikePayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     serviceId: string
     bikeId: string
@@ -779,6 +933,7 @@ readonly fields: ServiceRecordFieldRefs;
  */
 export interface Prisma__ServiceRecordClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  bike<T extends Prisma.BikeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BikeDefaultArgs<ExtArgs>>): Prisma.Prisma__BikeClient<runtime.Types.Result.GetResult<Prisma.$BikePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -831,6 +986,10 @@ export type ServiceRecordFindUniqueArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ServiceRecord to fetch.
    */
   where: Prisma.ServiceRecordWhereUniqueInput
@@ -849,6 +1008,10 @@ export type ServiceRecordFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ServiceRecord to fetch.
    */
   where: Prisma.ServiceRecordWhereUniqueInput
@@ -866,6 +1029,10 @@ export type ServiceRecordFindFirstArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
   /**
    * Filter, which ServiceRecord to fetch.
    */
@@ -915,6 +1082,10 @@ export type ServiceRecordFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ServiceRecord to fetch.
    */
   where?: Prisma.ServiceRecordWhereInput
@@ -962,6 +1133,10 @@ export type ServiceRecordFindManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
   /**
    * Filter, which ServiceRecords to fetch.
    */
@@ -1011,6 +1186,10 @@ export type ServiceRecordCreateArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
+  /**
    * The data needed to create a ServiceRecord.
    */
   data: Prisma.XOR<Prisma.ServiceRecordCreateInput, Prisma.ServiceRecordUncheckedCreateInput>
@@ -1044,6 +1223,10 @@ export type ServiceRecordCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    */
   data: Prisma.ServiceRecordCreateManyInput | Prisma.ServiceRecordCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1058,6 +1241,10 @@ export type ServiceRecordUpdateArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
   /**
    * The data needed to update a ServiceRecord.
    */
@@ -1110,6 +1297,10 @@ export type ServiceRecordUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * Limit how many ServiceRecords to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1124,6 +1315,10 @@ export type ServiceRecordUpsertArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
   /**
    * The filter to search for the ServiceRecord to update in case it exists.
    */
@@ -1150,6 +1345,10 @@ export type ServiceRecordDeleteArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
   /**
    * Filter which ServiceRecord to delete.
    */
@@ -1182,4 +1381,8 @@ export type ServiceRecordDefaultArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ServiceRecord
    */
   omit?: Prisma.ServiceRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ServiceRecordInclude<ExtArgs> | null
 }
