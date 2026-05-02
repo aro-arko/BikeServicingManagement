@@ -15,4 +15,6 @@ router.post(
 
 router.get("/", ServiceManagementController.getAllServices);
 
+router.get("/:id", ServiceManagementController.getServiceById);
+
 export const ServiceManagementRoutes = router;

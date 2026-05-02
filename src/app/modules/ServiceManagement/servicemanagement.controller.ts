@@ -27,7 +27,22 @@ const getAllServices = catchAsync(async (req, res) => {
   });
 });
 
+const getServiceById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await ServiceManagementService.getServiceByIdFromDb(
+    id as string,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Service record fetched successfully",
+    data: result,
+  });
+});
+
 export const ServiceManagementController = {
   CreateService,
   getAllServices,
+  getServiceById,
 };
