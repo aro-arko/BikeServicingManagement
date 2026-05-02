@@ -12,10 +12,7 @@ const globalErrorHandler = (
   // Handle Prisma errors
   if (err.name === "PrismaClientKnownRequestError") {
     const prismaError = err as any;
-    if (prismaError.code === "P2025") {
-      message = "Record not found";
-      statusCode = 404;
-    } else if (prismaError.code === "P2002") {
+    if (prismaError.code === "P2002") {
       message = "Unique constraint failed";
       statusCode = 400;
     }
