@@ -17,4 +17,12 @@ router.get("/", ServiceManagementController.getAllServices);
 
 router.get("/:id", ServiceManagementController.getServiceById);
 
+router.put(
+  "/:id",
+  validateRequest(
+    ServiceManagementValidationSchema.updateServiceValidationSchema,
+  ),
+  ServiceManagementController.UpdateService,
+);
+
 export const ServiceManagementRoutes = router;

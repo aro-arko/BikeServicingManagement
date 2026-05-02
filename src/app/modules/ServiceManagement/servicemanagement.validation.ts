@@ -13,6 +13,30 @@ const createServiceValidationSchema = z.object({
   }),
 });
 
+const updateServiceValidationSchema = z.object({
+  body: z.object({
+    serviceDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), {
+        message: "Invalid date format",
+      })
+      .optional(),
+    completionDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), {
+        message: "Invalid date format",
+      })
+      .optional(),
+    description: z.string().min(1, "Description is required").optional(),
+    status: z
+      .enum(["pending", "in_progress", "done"] as const, {
+        message: "Status must be one of: pending, in_progress, done",
+      })
+      .optional(),
+  }),
+});
+
 export const ServiceManagementValidationSchema = {
   createServiceValidationSchema,
+  updateServiceValidationSchema,
 };
