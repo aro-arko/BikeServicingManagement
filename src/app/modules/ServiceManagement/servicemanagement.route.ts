@@ -13,4 +13,6 @@ router.post(
   ServiceManagementController.CreateService,
 );
 
+router.get("/", ServiceManagementController.getAllServices);
+
 export const ServiceManagementRoutes = router;

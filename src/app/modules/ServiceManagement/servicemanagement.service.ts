@@ -24,6 +24,12 @@ const createServiceIntoDb = async (payload: IService) => {
   return service;
 };
 
+const getAllServicesFromDb = async () => {
+  const services = await prisma.serviceRecord.findMany();
+  return services;
+};
+
 export const ServiceManagementService = {
   createServiceIntoDb,
+  getAllServicesFromDb,
 };
